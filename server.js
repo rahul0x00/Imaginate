@@ -31,7 +31,9 @@ app.post("/image", async (req, res) => {
     res.json({ imageUrl: image });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).send(
+      error?.response.data.error.message || "Something went wrong",
+    );
   }
 });
 
